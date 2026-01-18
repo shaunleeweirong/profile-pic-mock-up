@@ -1,4 +1,5 @@
 // Header.jsx - LinkedIn navigation bar
+import PropTypes from 'prop-types'
 
 function Header() {
   return (
@@ -21,6 +22,7 @@ function Header() {
               <input
                 type="text"
                 placeholder="I'm looking for..."
+                aria-label="Search LinkedIn"
                 className="bg-transparent text-sm outline-none w-full text-linkedin-text placeholder-linkedin-textSecondary"
               />
             </div>
@@ -143,6 +145,16 @@ function DropdownArrow() {
       <path d="M8 11L3 6h10z"/>
     </svg>
   )
+}
+
+NavItem.propTypes = {
+  icon: PropTypes.node.isRequired,
+  label: PropTypes.string.isRequired,
+  active: PropTypes.bool,
+  hasNotification: PropTypes.bool,
+  notificationCount: PropTypes.number,
+  hasDropdown: PropTypes.bool,
+  isText: PropTypes.bool,
 }
 
 export default Header

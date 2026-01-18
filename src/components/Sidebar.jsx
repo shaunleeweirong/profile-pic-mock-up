@@ -1,4 +1,8 @@
 // Sidebar.jsx - Right sidebar with profile info and ads
+import PropTypes from 'prop-types'
+
+// Fallback image when profile image fails to load
+const FALLBACK_IMAGE = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Ccircle cx="12" cy="12" r="12" fill="%23e0e0e0"/%3E%3Ccircle cx="12" cy="9" r="4" fill="%23999"/%3E%3Cpath d="M12 14c-4 0-7 2-7 4v2h14v-2c0-2-3-4-7-4z" fill="%23999"/%3E%3C/svg%3E'
 
 function Sidebar() {
   return (
@@ -8,7 +12,10 @@ function Sidebar() {
       <SidebarCard>
         <div className="flex items-center justify-between">
           <h3 className="text-base font-semibold text-linkedin-text">Profile language</h3>
-          <button className="text-linkedin-textSecondary hover:text-linkedin-text">
+          <button
+            aria-label="Edit profile language"
+            className="text-linkedin-textSecondary hover:text-linkedin-text"
+          >
             <PencilIcon />
           </button>
         </div>
@@ -19,7 +26,10 @@ function Sidebar() {
       <SidebarCard>
         <div className="flex items-center justify-between">
           <h3 className="text-base font-semibold text-linkedin-text">Public profile & URL</h3>
-          <button className="text-linkedin-textSecondary hover:text-linkedin-text">
+          <button
+            aria-label="Edit public profile URL"
+            className="text-linkedin-textSecondary hover:text-linkedin-text"
+          >
             <PencilIcon />
           </button>
         </div>
@@ -73,7 +83,8 @@ function Sidebar() {
           <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
             <img
               src="https://randomuser.me/api/portraits/women/44.jpg"
-              alt="Profile"
+              alt="Jeelene Ker's profile photo"
+              onError={(e) => { e.target.src = FALLBACK_IMAGE }}
               className="w-full h-full object-cover"
             />
           </div>
@@ -102,6 +113,11 @@ function SidebarCard({ children, className = '' }) {
       {children}
     </div>
   )
+}
+
+SidebarCard.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 }
 
 // Icons

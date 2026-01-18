@@ -1,4 +1,8 @@
 // ProfileCard.jsx - Main profile section
+import PropTypes from 'prop-types'
+
+// Fallback image when profile image fails to load
+const FALLBACK_IMAGE = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Ccircle cx="12" cy="12" r="12" fill="%23e0e0e0"/%3E%3Ccircle cx="12" cy="9" r="4" fill="%23999"/%3E%3Cpath d="M12 14c-4 0-7 2-7 4v2h14v-2c0-2-3-4-7-4z" fill="%23999"/%3E%3C/svg%3E'
 
 function ProfileCard({ profileImage, onProfileClick }) {
   return (
@@ -16,7 +20,10 @@ function ProfileCard({ profileImage, onProfileClick }) {
         </div>
 
         {/* Edit banner button */}
-        <button className="absolute top-3 right-3 bg-white rounded-full p-2 hover:bg-gray-100">
+        <button
+          aria-label="Edit banner image"
+          className="absolute top-3 right-3 bg-white rounded-full p-2 hover:bg-gray-100"
+        >
           <PencilIcon />
         </button>
       </div>
@@ -28,11 +35,13 @@ function ProfileCard({ profileImage, onProfileClick }) {
         <div className="absolute -top-[88px] left-6 z-10">
           <button
             onClick={onProfileClick}
+            aria-label="Edit profile photo"
             className="w-[152px] h-[152px] rounded-full border-4 border-white overflow-hidden hover:opacity-90 transition-opacity"
           >
             <img
               src={profileImage}
-              alt="Profile"
+              alt="Shaun Lee Wei Rong's profile photo"
+              onError={(e) => { e.target.src = FALLBACK_IMAGE }}
               className="w-full h-full object-cover"
             />
           </button>
@@ -91,7 +100,10 @@ function ProfileCard({ profileImage, onProfileClick }) {
             <button className="border border-linkedin-blue text-linkedin-blue px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-blue-50 hover:border-2">
               View my services
             </button>
-            <button className="border border-linkedin-textSecondary text-linkedin-textSecondary p-2 rounded-full hover:bg-gray-100">
+            <button
+              aria-label="More options"
+              className="border border-linkedin-textSecondary text-linkedin-textSecondary p-2 rounded-full hover:bg-gray-100"
+            >
               <MoreIcon />
             </button>
           </div>
@@ -104,13 +116,21 @@ function ProfileCard({ profileImage, onProfileClick }) {
             <p className="text-sm text-linkedin-textSecondary">Digital Marketing Manager, Marketing Director ...</p>
             <a href="#" className="text-sm text-linkedin-blue font-semibold hover:underline">Show details</a>
           </div>
-          <button className="text-linkedin-textSecondary hover:text-linkedin-text">
+          <button
+            aria-label="Edit open to work preferences"
+            className="text-linkedin-textSecondary hover:text-linkedin-text"
+          >
             <PencilIcon />
           </button>
         </div>
       </div>
     </div>
   )
+}
+
+ProfileCard.propTypes = {
+  profileImage: PropTypes.string.isRequired,
+  onProfileClick: PropTypes.func.isRequired,
 }
 
 // Icons

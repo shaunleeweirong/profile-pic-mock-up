@@ -13,6 +13,7 @@ const PROFILE_IMAGES = [
 function App() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const currentImage = PROFILE_IMAGES[currentImageIndex]
 
@@ -26,11 +27,13 @@ function App() {
     setIsModalOpen(false)
   }
 
-  // AI Update - cycle to next image
-  const handleAIUpdate = () => {
+  // AI Update - cycle to next image with simulated loading
+  const handleAIUpdate = async () => {
+    setIsLoading(true)
+    await new Promise(resolve => setTimeout(resolve, 2000)) // 2 second delay
     const nextIndex = (currentImageIndex + 1) % PROFILE_IMAGES.length
     setCurrentImageIndex(nextIndex)
-    console.log(`AI Update: Changed to image ${nextIndex + 1} of ${PROFILE_IMAGES.length}`)
+    setIsLoading(false)
   }
 
   return (
@@ -60,6 +63,7 @@ function App() {
         onClose={handleCloseModal}
         profileImage={currentImage}
         onAIUpdate={handleAIUpdate}
+        isLoading={isLoading}
       />
     </div>
   )
