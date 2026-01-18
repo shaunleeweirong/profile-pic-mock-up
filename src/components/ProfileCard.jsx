@@ -25,7 +25,7 @@ function ProfileCard({ profileImage, onProfileClick }) {
       <div className="px-6 pb-6 relative">
 
         {/* Profile Picture - Clickable */}
-        <div className="absolute -top-[88px] left-6">
+        <div className="absolute -top-[88px] left-6 z-10">
           <button
             onClick={onProfileClick}
             className="w-[152px] h-[152px] rounded-full border-4 border-white overflow-hidden hover:opacity-90 transition-opacity"
@@ -38,33 +38,37 @@ function ProfileCard({ profileImage, onProfileClick }) {
           </button>
         </div>
 
-        {/* Right side: Company logos */}
-        <div className="flex justify-end pt-4 gap-4">
-          <div className="flex items-center gap-2">
-            <LinkedInLogo />
-            <span className="text-sm font-semibold text-linkedin-text">LinkedIn</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#1e3a5f] rounded flex items-center justify-center text-white text-xs font-bold">
-              JCU
+        {/* Content area - starts after profile pic overlap area */}
+        <div className="pt-[72px]">
+          {/* Main content row: Left (name + headline) | Right (logos) */}
+          <div className="flex justify-between items-start">
+            {/* Left column: Name + Headline stacked */}
+            <div className="flex-1 mr-4">
+              <div className="flex items-center gap-2">
+                <DiamondBadge />
+                <h1 className="text-2xl font-semibold text-linkedin-text">Shaun Lee Wei Rong</h1>
+                <VerifiedBadge />
+              </div>
+              {/* Headline - inside left column, next to logos */}
+              <p className="text-base text-linkedin-text mt-2">
+                Lead Client Solutions Manager at LinkedIn | ex-Digital Marketing Lead @ Amazon and ByteDance | Performance & Brand Marketing
+              </p>
             </div>
-            <span className="text-sm text-linkedin-text">James Cook University</span>
-          </div>
-        </div>
 
-        {/* Name and details - below profile pic */}
-        <div className="mt-[72px]">
-          {/* Name row */}
-          <div className="flex items-center gap-2">
-            <DiamondBadge />
-            <h1 className="text-2xl font-semibold text-linkedin-text">Shaun Lee Wei Rong</h1>
-            <VerifiedBadge />
+            {/* Right column: Company logos stacked */}
+            <div className="flex flex-col gap-2 shrink-0">
+              <div className="flex items-center gap-2">
+                <LinkedInLogo />
+                <span className="text-sm font-semibold text-linkedin-text">LinkedIn</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-[#1e3a5f] rounded flex items-center justify-center text-white text-xs font-bold">
+                  JCU
+                </div>
+                <span className="text-sm text-linkedin-text">James Cook University</span>
+              </div>
+            </div>
           </div>
-
-          {/* Title */}
-          <p className="text-base text-linkedin-text mt-1">
-            Lead Client Solutions Manager at LinkedIn | ex-Digital Marketing Lead @ Amazon and ByteDance | Performance & Brand Marketing
-          </p>
 
           {/* Location + Contact */}
           <p className="text-sm text-linkedin-textSecondary mt-2">
