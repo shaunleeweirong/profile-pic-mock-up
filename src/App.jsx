@@ -4,11 +4,10 @@ import ProfileCard from './components/ProfileCard'
 import ProfilePhotoModal from './components/ProfilePhotoModal'
 import Sidebar from './components/Sidebar'
 
-// Placeholder profile images - swap these with your own photos
+// Profile images - add your images to public/images/
 const PROFILE_IMAGES = [
-  'https://randomuser.me/api/portraits/men/32.jpg',
-  'https://randomuser.me/api/portraits/men/44.jpg',
-  'https://randomuser.me/api/portraits/men/68.jpg',
+  '/images/profile.png',      // Current profile picture
+  '/images/ai-option.jpeg',   // AI-generated option
 ]
 
 function App() {
